@@ -1,0 +1,345 @@
+<html lang="zh-tw">
+<head>
+	<meta charset="utf-8">
+	<title>list</title>
+	<script>
+		(function(document) {
+	  'use strict';
+
+	  // 建立 LightTableFilter
+	  var LightTableFilter = (function(Arr) {
+
+		var _input;
+
+		// 資料輸入事件處理函數
+		function _onInputEvent(e) {
+		  _input = e.target;
+		  var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+		  Arr.forEach.call(tables, function(table) {
+			Arr.forEach.call(table.tBodies, function(tbody) {
+			  Arr.forEach.call(tbody.rows, _filter);
+			});
+		  });
+		}
+
+		// 資料篩選函數，顯示包含關鍵字的列，其餘隱藏
+		function _filter(row) {
+		  var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+		  row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+		}
+
+		return {
+		  // 初始化函數
+		  init: function() {
+			var inputs = document.getElementsByClassName('light-table-filter');
+			Arr.forEach.call(inputs, function(input) {
+			  input.oninput = _onInputEvent;
+			});
+		  }
+		};
+	  })(Array.prototype);
+
+	  // 網頁載入完成後，啟動 LightTableFilter
+	  document.addEventListener('readystatechange', function() {
+		if (document.readyState === 'complete') {
+		  LightTableFilter.init();
+		}
+	  });
+
+	})(document);
+	</script>
+	<style>
+		#item{
+			width:245px;
+			height:50px;
+			margin:0px auto;
+			line-height:50px;
+			}
+		#item2{
+			width:200px;
+			height:20px;
+			margin:0px auto;
+			}
+		#header{
+			width:1050px;
+			margin:0px auto;
+			}
+		ul.pagination {
+			display: inline-block;
+			padding: 0;
+			margin: 0;
+			}
+
+		ul.pagination li {display: inline;}
+
+		ul.pagination li a {
+			color: black;
+			float: left;
+			padding: 8px 16px;
+			text-decoration: none;
+		}
+
+		ul.pagination li a.active {
+			background-color: #4CAF50;
+			color: white;
+		}
+
+		ul.pagination li a:hover:not(.active) {background-color: #ddd;}
+	</style>
+</head>
+<body>
+<div id="item">
+	搜尋：<input type="search" class="light-table-filter" data-table="order-table" placeholder="請輸入關鍵字">
+</div>
+<div id="header">
+<table class="order-table" style="text-align:center;border-spacing:0px 0px;border:3px #FFD382 solid;">
+  <thead>
+    <tr>
+      <th>國旗</th>
+      <th width="">國家</th>
+	  <th>國家代碼（2位）　</th>
+	  <th>國家代碼（3位）</th>
+	  <th>母語名稱</th>
+	  <th>替代國家名稱　</th>
+	  <th>國際電話區號</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td height="100px"><img src="D:\list\pictuer\tw.png" border="1"></td>
+      <td><a href="file:///D:/list/tw.html">中華民國</a></td>
+	  <td>TW</td>
+	  <td>TWN</td>
+	  <td>中華民國</td>
+	  <td>台灣</td>
+	  <td>+886</td>
+    </tr>
+    <tr>
+      <td height="100px"><img src="D:\list\pictuer\jp.png" border="1"></td>
+      <td><a href="file:///D:/list/jp.html">日本國</a></td>
+	  <td>JP</td>
+	  <td>JPN</td>
+	  <td>にっぽんこく</td>
+	  <td>日本</td>
+	  <td>+81</td>
+    </tr>
+    <tr>
+      <td height="100px"><img src="D:\list\pictuer\kr.png" border="1"></td>
+      <td><a href="file:///D:/list/kr.html">大韓民國</a></td>
+	  <td>KR</td>
+	  <td>KOR</td>
+	  <td>한국</td>
+	  <td>韓國</td>
+	  <td>+82</td>
+    </tr>
+    <tr>
+      <td height="100px"><img src="D:\list\pictuer\cn.png" border="1"></td>
+      <td><a href="file:///D:/list/cn.html">中華人民共和國</a></td>
+	  <td>CN</td>
+	  <td>CHN</td>
+	  <td>中华人民共和国</td>
+	  <td>中國</td>
+	  <td>+86</td>
+    </tr>
+	<tr>
+      <td height="100px"><img src="D:\list\pictuer\au.png" border="1"></td>
+      <td><a href="file:///D:/list/au.html">澳大利亞聯邦</a></td>
+	  <td>AU</td>
+	  <td>AUS</td>
+	  <td>Australia</td>
+	  <td>澳洲</td>
+	  <td>+61</td>
+    </tr>
+    <tr>
+      <td height="100px"><img src="D:\list\pictuer\bd.png" border="1"></td>
+      <td>孟加拉人民共和國</td>
+	  <td>BD</td>
+	  <td>BGD</td>
+	  <td>গণপ্রজাতন্ত্রী বাংলাদেশ</td>
+	  <td>孟加拉</td>
+	  <td>+880</td>
+    </tr>
+    <tr>
+      <td height="100px"><img src="D:\list\pictuer\bt.png" border="1"></td>
+      <td>不丹王國</td>
+	  <td>BT</td>
+	  <td>BTN</td>
+	  <td>འབྲུག་ཡུལ་</td>
+	  <td>不丹</td>
+	  <td>+975</td>
+    </tr>
+    <tr>
+      <td height="100px"><img src="D:\list\pictuer\bn.png" border="1"></td>
+      <td>汶萊和平之國</td>
+	  <td>BN</td>
+	  <td>BRN</td>
+	  <td>نڬارا بروني دارالسلام</td>
+	  <td>汶萊</td>
+	  <td>+673</td>
+    </tr>
+	<tr>
+      <td height="100px"><img src="D:\list\pictuer\kh.png" border="1"></td>
+      <td>柬埔寨王國</td>
+	  <td>KH</td>
+	  <td>KHM</td>
+	  <td>ព្រះរាជាណាចក្រកម្ពុជា</td>
+	  <td>柬埔寨</td>
+	  <td>+855</td>
+    </tr>
+    <tr>
+      <td height="100px"><img src="D:\list\pictuer\ck.png" border="1"></td>
+      <td>庫克群島</td>
+	  <td>CK</td>
+	  <td>COK</td>
+	  <td>Kūki 'Āirani</td>
+	  <td>庫克群島</td>
+	  <td>+682</td>
+    </tr>
+    <tr>
+      <td height="100px"><img src="D:\list\pictuer\fj.png" border="1"></td>
+      <td>斐濟共和國</td>
+	  <td>FJ</td>
+	  <td>FJI</td>
+	  <td>रिपब्लिक ऑफ फीजी</td>
+	  <td>斐濟</td>
+	  <td>+679</td>
+    </tr>
+    <tr>
+      <td height="100px"><img src="D:\list\pictuer\in.png" border="1"></td>
+      <td>印度共和國</td>
+	  <td>IN</td>
+	  <td>IND</td>
+	  <td>भारत गणराज्य</td>
+	  <td>印度</td>
+	  <td>+91</td>
+    </tr>
+	<tr>
+      <td height="100px"><img src="D:\list\pictuer\id.png" border="1"></td>
+      <td>印度尼西亞共和國</td>
+	  <td>ID</td>
+	  <td>IDN</td>
+	  <td>Republik Indonesia</td>
+	  <td>印尼</td>
+	  <td>+62</td>
+    </tr>
+    <tr>
+      <td height="100px"><img src="D:\list\pictuer\ki.png" border="1"></td>
+      <td>吉里巴斯共和國</td>
+	  <td>KI</td>
+	  <td>KIR</td>
+	  <td>Ribaberiki Kiribati</td>
+	  <td>吉里巴斯</td>
+	  <td>+686</td>
+    </tr>
+    <tr>
+      <td height="100px"><img src="D:\list\pictuer\kp.png" border="1"></td>
+      <td>朝鮮民主主義人民共和國</td>
+	  <td>KP</td>
+	  <td>PRK</td>
+	  <td>조선민주주의인민공화국</td>
+	  <td>北韓</td>
+	  <td>+850</td>
+    </tr>
+    <tr>
+      <td height="100px"><img src="D:\list\pictuer\la.png" border="1"></td>
+      <td>寮人民民主共和國</td>
+	  <td>LA</td>
+	  <td>LAO</td>
+	  <td>ສາທາລະນະລັດ ປະຊາທິປະໄຕ ປະຊາຊົນລາວ</td>
+	  <td>寮國</td>
+	  <td>+856</td>
+    </tr>
+	<tr>
+      <td height="100px"><img src="D:\list\pictuer\my.png" border="1"></td>
+      <td>馬來西亞</td>
+	  <td>MY</td>
+	  <td>MYS</td>
+	  <td>Malaysia</td>
+	  <td>馬來西亞</td>
+	  <td>+ 60</td>
+    </tr>
+    <tr>
+      <td height="100px"><img src="D:\list\pictuer\mv.png" border="1"></td>
+      <td>馬爾地夫共和國</td>
+	  <td>MV</td>
+	  <td>MDV</td>
+	  <td>ދިވެހިރާއްޖޭގެ ޖުމުހޫރިއްޔާ‎</td>
+	  <td>馬爾地夫</td>
+	  <td>+960</td>
+    </tr>
+    <tr>
+      <td height="100px"><img src="D:\list\pictuer\mh.png" border="1"></td>
+      <td>馬紹爾群島共和國</td>
+	  <td>MH</td>
+	  <td>MHL</td>
+	  <td>Aolepān Aorōkin M̧ajeļ</td>
+	  <td>馬紹爾</td>
+	  <td>+692</td>
+    </tr>
+    <tr>
+      <td height="100px"><img src="D:\list\pictuer\fm.png" border="1"></td>
+      <td>密克羅尼西亞聯邦</td>
+	  <td>FM</td>
+	  <td>FSM</td>
+	  <td>Federated States of Micronesia</td>
+	  <td>密克羅尼西亞</td>
+	  <td>+691</td>
+    </tr>
+	<tr>
+      <td height="100px"><img src="D:\list\pictuer\mm.png" border="1"></td>
+      <td>緬甸聯邦</td>
+	  <td>MM</td>
+	  <td>MMR</td>
+	  <td>ပြည်ထောင်စု သမ္မတ မြန်မာနိုင်ငံတော်</td>
+	  <td>緬甸</td>
+	  <td>+95</td>
+    </tr>
+    <tr>
+      <td height="100px"><img src="D:\list\pictuer\nr.png" border="1"></td>
+      <td>諾魯共和國</td>
+	  <td>NR</td>
+	  <td>NRU</td>
+	  <td>Repubrikin Naoero</td>
+	  <td>諾魯</td>
+	  <td>+674</td>
+    </tr>
+    <tr>
+      <td height="100px"><img src="D:\list\pictuer\np.png" height="100" border="1"></td>
+      <td>尼泊爾聯邦民主共和國</td>
+	  <td>NP</td>
+	  <td>NPL</td>
+	  <td>नेपाल</td>
+	  <td>尼泊爾</td>
+	  <td>+977</td>
+    </tr>
+    <tr>
+      <td height="100px"><img src="D:\list\pictuer\nz.png" border="1"></td>
+      <td>紐西蘭</td>
+	  <td>NZ</td>
+	  <td>NZL</td>
+	  <td>Aotearoa</td>
+	  <td>紐西蘭</td>
+	  <td>+64</td>
+    </tr>
+	<tr>
+      <td height="100px"><img src="D:\list\pictuer\sg.png" border="1"></td>
+      <td>新加坡共和國</td>
+	  <td>SG</td>
+	  <td>SGP</td>
+	  <td>சிங்கப்பூர் குடியரச</td>
+	  <td>新加坡</td>
+	  <td>+65</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div id="item2">
+	<ul class="pagination">
+	  <li><a href="#">«</a></li>
+	  <li><a  href="file:///D:/list/index.html">1</a></li>
+	  <li><a class="active" href="#">2</a></li>
+	  <li><a href="#">»</a></li>
+	 </ul>
+</div>
+</body>
+</html>
